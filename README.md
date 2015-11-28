@@ -1,6 +1,6 @@
 # Opml::Handler
 
-Handle opml(xml) in your ruby application
+Handle opml(xml) in your ruby application, both import and export and support children outlines
 
 ## Installation
 
@@ -20,10 +20,10 @@ Or install it yourself as:
 
 ## Usage
 
-Export ruby hash to opml
-
+You can convert ruby hash to opml string
 ```ruby
 require 'opml-handler'
+
 data = [{text: 'First level',
          children: [{text: 'Second Level',
                      children: [{text: 'Item 1', _note: "Some notes", children: []},
@@ -31,9 +31,36 @@ data = [{text: 'First level',
                     }
          ]
         }]
-opml = OpmlHandler::Opml.new('', "title")
+
+opml = OpmlHandler::Opml.new(outlines_attributes: data, title: "title")
 
 puts opml.to_xml
+```
+
+Or convert opml string to ruby hash
+
+```ruby
+content = '<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+  <head>
+    <title>Title</title>
+  </head>
+  <body>
+    <outline text="First level">
+      <outline text="Second Level">
+        <outline text="Item 1" _note="Some notes"/>
+        <outline text="Item 2"/>
+      </outline>
+    </outline>
+  </body>
+</opml>'
+
+opml_object = OpmlHandler::Opml.new(content: content)
+
+opml_object.to_hash
+
+puts opml_object.title
+puts opml_object.outlines_attributes
 ```
 
 ## Development
