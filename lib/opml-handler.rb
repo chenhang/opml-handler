@@ -29,7 +29,8 @@ module OpmlHandler
     attr_reader :attributes, :children
 
     def initialize(attributes={})
-      @children = attributes.delete(:children).map { |child| Outline.new child }
+      children = attributes.delete(:children) || []
+      @children = children.map { |child| Outline.new child }
       @attributes = attributes
     end
 

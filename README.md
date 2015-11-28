@@ -1,8 +1,6 @@
 # Opml::Handler
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/opml/handler`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Handle opml(xml) in your ruby application
 
 ## Installation
 
@@ -22,7 +20,21 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Export ruby hash to opml
+
+```ruby
+require 'opml-handler'
+data = [{text: 'First level',
+         children: [{text: 'Second Level',
+                     children: [{text: 'Item 1', _note: "Some notes", children: []},
+                                {text: 'Item 2', children: []}]
+                    }
+         ]
+        }]
+opml = OpmlHandler::Opml.new('', "title")
+
+puts opml.to_xml
+```
 
 ## Development
 
