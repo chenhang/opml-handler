@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["hang"]
   spec.email         = ["iamchenhang@gmail.com"]
 
-  spec.summary       = "handle opml ruby application"
-  spec.description   = "export hash to opml"
+  spec.summary       = "handle opml file(support children nodes) for ruby application"
+  spec.description   = "handle opml file(support children nodes) for ruby application, both export and import"
   spec.homepage      = "https://github.com/chenhang/opml-handler"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
